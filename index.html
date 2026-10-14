@@ -199,9 +199,10 @@ textarea { min-height: 140px; resize: vertical; }
 /* ---------- footer ---------- */
 footer { border-top: 1px solid var(--line); padding-block: 32px 40px; margin-top: 24px; }
 .foot { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: space-between; align-items: center; color: var(--fg-3); font-size: .88rem; }
-.foot nav { display: flex; gap: 22px; }
+.foot nav { display: flex; flex-wrap: wrap; gap: 10px 22px; }
 .foot button { background: none; border: 0; padding: 0; color: var(--fg-2); font: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
-.foot button:hover { color: var(--fg); }
+.foot a{color:var(--fg-2);text-underline-offset:4px}
+.foot a:hover,.foot button:hover { color: var(--fg); }
 dialog { background: var(--slate); color: var(--fg); border: 1px solid var(--line); border-radius: 20px; padding: 28px; max-width: min(520px, calc(100vw - 32px)); }
 dialog::backdrop { background: rgba(3, 6, 16, .7); backdrop-filter: blur(4px); }
 dialog h3 { font-size: 1.3rem; margin-bottom: 12px; }
@@ -211,6 +212,108 @@ dialog p { color: var(--fg-2); margin-bottom: 18px; font-size: .95rem; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
 }
+
+.reach { display: grid; gap: 14px; }
+.rc { display: grid; grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: 16px; padding: 20px 22px; border-radius: 20px; border: 1px solid var(--line); background: var(--glass); color: var(--fg); text-decoration: none; transition: transform .25s, border-color .25s, box-shadow .25s; }
+a.rc:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -18px rgba(61,139,255,.5); }
+.rc i { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: rgba(61,139,255,.14); color: var(--blue); }
+.rc.wa i { background: rgba(37,211,102,.15); color: #25d366; } .rc.wa:hover { border-color: #25d366; }
+.rc.call i { background: rgba(255,122,26,.15); color: var(--orange); } .rc.call:hover { border-color: var(--orange); }
+.rc b { display: block; font-family: var(--display); font-size: 1.15rem; }
+.rc em { font-style: normal; color: var(--fg-2); font-size: .95rem; overflow-wrap: anywhere; }
+.rc u { text-decoration: none; font-weight: 700; font-size: .9rem; color: var(--fg); white-space: nowrap; }
+.rc.mail { grid-template-columns: auto minmax(0,1fr); } .rc.mail .mailrow { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 10px; }
+@media (max-width: 520px) { .rc { grid-template-columns: auto minmax(0,1fr); padding: 16px; } .rc u { grid-column: 1 / -1; } }
+.fab { position: fixed; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 10px; z-index: 30; }
+.fab a { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; color: #fff; box-shadow: 0 10px 28px -6px rgba(0,0,0,.6); transition: transform .2s; }
+.fab a:hover { transform: scale(1.08); }
+.fab .f-wa { background: #25d366; } .fab .f-call { background: linear-gradient(120deg, var(--orange), var(--blue)); }
+body.lg-on .fab { display: none; }
+@media print { .fab { display: none; } }
+/* ---------- legal centre (same page, hash-routed) ---------- */
+body.lg-on > header.nav, body.lg-on > main, body.lg-on > footer { display: none; }
+#legal { min-height: 100vh; }
+.lg-bar { position: sticky; top: 0; z-index: 40; margin-inline: -16px; background: rgba(6,10,24,.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.lg-bar-in { max-width: 1180px; margin-inline: auto; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.lg-acts { display: flex; gap: 8px; flex-wrap: wrap; }
+.lg-ghost, .lg-btn { font: 600 .85rem var(--body); color: var(--fg); text-decoration: none; padding: 8px 15px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.03); cursor: pointer; transition: border-color .2s, background .2s, transform .2s; }
+.lg-ghost:hover { border-color: var(--blue); background: rgba(61,139,255,.1); transform: translateY(-1px); }
+.lg-btn { display: inline-block; background: var(--grad); border: 0; padding: 11px 22px; color: #fff; }
+.lg-prog { height: 2px; width: 0; background: var(--grad); }
+.lg-wrap { max-width: 1180px; margin-inline: auto; padding-bottom: 40px; }
+.lg-switch { display: flex; gap: 8px; overflow-x: auto; padding: 18px 0 6px; scrollbar-width: none; }
+.lg-switch::-webkit-scrollbar { display: none; }
+.lg-switch a { flex: none; font: 600 .86rem var(--body); text-decoration: none; color: var(--fg-2); padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); white-space: nowrap; transition: .2s; }
+.lg-switch a:hover { color: var(--fg); border-color: var(--blue); }
+.lg-switch a.on { color: #fff; background: var(--grad); border-color: transparent; }
+.ldoc { animation: lgIn .45s ease both; }
+@keyframes lgIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.lg-hero { padding-block: clamp(30px, 6vw, 64px) 18px; }
+.lg-eyebrow { font: 500 .78rem var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--orange); }
+.lg-hero h1 { font-family: var(--display); font-size: clamp(2rem, 6vw, 3.4rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.08; margin: 10px 0 12px; text-wrap: balance; }
+.lg-lead { color: var(--fg-2); max-width: 62ch; font-size: 1.05rem; }
+.lg-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.lg-meta span { font: 400 .78rem var(--mono); color: var(--fg-3); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
+.lg-meta b { color: var(--fg); font-weight: 500; }
+.lg-sum { background: linear-gradient(135deg, rgba(255,122,26,.08), rgba(61,139,255,.10)); border: 1px solid var(--line); border-radius: 20px; padding: 20px 24px; margin-block: 22px; }
+.lg-sum-t { font: 500 .74rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
+.lg-sum p { color: var(--fg); margin: 0 0 6px; }
+.lg-sum small { color: var(--fg-3); }
+.lg-sum a, .lg-body a, .lg-end a { color: var(--blue); text-underline-offset: 3px; }
+.lg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px; margin-top: 22px; }
+.lg-card { display: block; text-decoration: none; color: var(--fg); background: var(--glass); border: 1px solid var(--line); border-radius: 20px; padding: 22px; transition: transform .25s, border-color .25s, box-shadow .25s; }
+.lg-card:hover { transform: translateY(-4px); border-color: var(--blue); box-shadow: 0 18px 40px -18px rgba(61,139,255,.45); }
+.lg-n { font: 500 .8rem var(--mono); color: var(--orange); }
+.lg-card h3 { font-size: 1.2rem; margin: 8px 0 6px; font-weight: 700; }
+.lg-card p { color: var(--fg-2); font-size: .94rem; margin: 0 0 12px; }
+.lg-card em { font-style: normal; font-weight: 600; font-size: .88rem; color: var(--blue); }
+.lg-cols { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 40px; align-items: start; margin-top: 10px; }
+.lg-side-in { position: sticky; top: 84px; max-height: calc(100vh - 100px); overflow-y: auto; scrollbar-width: thin; padding-right: 6px; }
+.lg-side-h { font: 500 .74rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 10px; }
+.lg-toc a, .lg-toc-m nav a { display: flex; gap: 10px; text-decoration: none; color: var(--fg-3); font-size: .9rem; padding: 7px 10px; border-left: 2px solid var(--line); line-height: 1.35; transition: .2s; }
+.lg-toc a b, .lg-toc-m nav a b { font: 500 .74rem var(--mono); color: var(--fg-3); padding-top: 2px; }
+.lg-toc a:hover { color: var(--fg); }
+.lg-toc a.on { color: var(--fg); border-left-color: var(--orange); background: linear-gradient(90deg, rgba(255,122,26,.10), transparent); }
+.lg-toc a.on b { color: var(--orange); }
+.lg-toc-m { display: none; border: 1px solid var(--line); border-radius: 16px; padding: 4px 16px; margin-bottom: 18px; background: var(--glass); }
+.lg-toc-m summary { cursor: pointer; font-weight: 600; padding: 12px 0; list-style: none; }
+.lg-toc-m summary::-webkit-details-marker { display: none; }
+.lg-toc-m summary::after { content: "+"; float: right; color: var(--orange); }
+.lg-toc-m[open] summary::after { content: "–"; }
+.lg-toc-m nav { padding-bottom: 10px; }
+.lg-toc-m nav a { color: var(--fg-2); }
+.lg-body { min-width: 0; }
+.lg-sec { padding-block: 26px; border-top: 1px solid var(--line); scroll-margin-top: 84px; }
+.lg-sec:first-child { border-top: 0; padding-top: 6px; }
+.lg-sec h2 { font-size: clamp(1.2rem, 2.4vw, 1.5rem); font-weight: 700; margin-bottom: 12px; display: flex; gap: 12px; align-items: baseline; }
+.lg-sec h2 span { font: 500 .8rem var(--mono); color: var(--orange); }
+.lg-sec p, .lg-sec li { color: var(--fg-2); }
+.lg-sec p { margin: 0 0 12px; }
+.lg-sec ul, .lg-sec ol { margin: 0 0 12px; padding-left: 22px; }
+.lg-sec li { margin-bottom: 7px; }
+.lg-sec strong { color: var(--fg); }
+.lg-sec .tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; margin-bottom: 14px; }
+.lg-sec table { border-collapse: collapse; width: 100%; min-width: 480px; font-size: .92rem; }
+.lg-sec th, .lg-sec td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--fg-2); }
+.lg-sec th { color: var(--fg); background: rgba(20,29,51,.7); }
+.lg-sec tr:last-child td { border-bottom: 0; }
+.lg-sec .contact { background: var(--glass); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; }
+.lg-sec .contact p:last-child { margin: 0; }
+.lg-end { margin-top: 20px; padding: 18px 22px; border: 1px dashed var(--line); border-radius: 16px; color: var(--fg-2); }
+.lg-foot { max-width: 1180px; margin: 30px auto 0; padding: 24px 0 8px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; color: var(--fg-3); font-size: .85rem; }
+.lg-foot code { font: .78rem var(--mono); color: var(--fg-2); margin-right: 6px; }
+@media (max-width: 900px) { .lg-cols { grid-template-columns: minmax(0, 1fr); gap: 0; } .lg-side { display: none; } .lg-toc-m { display: block; } }
+@media (max-width: 560px) { .lg-acts .lg-ghost { padding: 7px 12px; font-size: .8rem; } .lg-sum { padding: 16px; } .lg-foot code { display: none; } }
+@media (prefers-reduced-motion: reduce) { .ldoc { animation: none; } .lg-card:hover { transform: none; } }
+@media print {
+  body { background: #fff !important; color: #000; padding: 0; }
+  .lg-bar, .lg-switch, .lg-side, .lg-toc-m, .lg-foot, .lg-btn { display: none !important; }
+  .lg-cols { display: block; } .lg-sum { background: #f3f4f7; border-color: #ccc; }
+  .lg-hero h1, .lg-sec h2, .lg-sec strong, .lg-sum p, .lg-meta b { color: #000; }
+  .lg-sec p, .lg-sec li, .lg-lead, .lg-sec td, .lg-sec th { color: #222; } .lg-sec { border-color: #ccc; break-inside: avoid-page; }
+  .lg-sec a, .lg-end a { color: #0645ad; }
+}
+
 </style>
 
 <header class="nav" id="nav">
@@ -334,47 +437,24 @@ dialog p { color: var(--fg-2); margin-bottom: 18px; font-size: .95rem; }
     <div class="contact">
       <div>
         <span class="eyebrow">Contact</span>
-        <h2 style="margin-block:14px 18px">Tell us what you want to build</h2>
-        <p class="lead">Share a few details and your budget range. We reply with a proposed approach and next steps.</p>
-        <div class="mail">
-          <span class="eyebrow" style="color:var(--fg-3)">Business email</span>
-          <div class="mailrow">
-            <code id="mailcode">akridhadigital@gmail.com</code>
-            <button class="copy" type="button" id="copymail">Copy</button>
-            <a class="ghost" href="mailto:akridhadigital@gmail.com">Open email app</a>
-          </div>
+        <h2 style="margin-block:14px 18px">Let's talk about your project</h2>
+        <p class="lead">Pick the channel you prefer. A WhatsApp message or a call is the fastest way to reach us. Tell us what you want to build and we will reply with a proposed approach and next steps.</p>
+      </div>
+      <div class="reach">
+        <a class="rc wa" href="https://wa.me/917905360342?text=Hi%20AKRIDHA%20DIGITAL%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener">
+          <i aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20l1.4-4.2A8.5 8.5 0 1 1 8 19.2L3 20z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.3-2-1-.9.7a4 4 0 0 1-1.9-1.9l.7-.9-1-2L9 9.5z"/></svg></i>
+          <span><b>WhatsApp</b><em>+91 79053 60342</em></span><u>Chat now &rarr;</u>
+        </a>
+        <a class="rc call" href="tel:+917905360342">
+          <i aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></i>
+          <span><b>Call us</b><em>+91 79053 60342</em></span><u>Call now &rarr;</u>
+        </a>
+        <div class="rc mail">
+          <i aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></i>
+          <span><b>Email</b><em id="mailcode">akridhadigital@gmail.com</em></span>
+          <div class="mailrow"><a class="ghost" href="mailto:akridhadigital@gmail.com">Open email app</a><button class="copy" type="button" id="copymail">Copy</button></div>
         </div>
       </div>
-      <form id="form" novalidate>
-        <div class="f2">
-          <label for="name">Full Name<input id="name" name="name" type="text" autocomplete="name" placeholder="Your name"><span class="err" id="e-name"></span></label>
-          <label for="email">Corporate Email Address<input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com"><span class="err" id="e-email"></span></label>
-        </div>
-        <label for="budget">Project Budget Tier
-          <select id="budget" name="budget">
-            <option value="">Select a range</option>
-            <option>Under ₹1 lakh</option>
-            <option>₹1 to ₹5 lakh</option>
-            <option>₹5 to ₹15 lakh</option>
-            <option>₹15 lakh and above</option>
-            <option>Not sure yet</option>
-          </select>
-          <span class="err" id="e-budget"></span>
-        </label>
-        <label for="msg">Project Specifications
-          <textarea id="msg" name="msg" placeholder="What are you building, for whom, and by when?"></textarea>
-          <span class="err" id="e-msg"></span>
-        </label>
-        <button class="cta" id="send" type="submit" style="justify-self:start">Send Inquiry</button>
-        <div class="result" id="result" hidden>
-          <p id="ok" hidden><strong>Inquiry sent.</strong> Thank you. We will reply to the email address you entered.</p>
-          <div id="fallback" hidden>
-            <p>The inquiry could not be sent from here. Copy it and email it to <strong>akridhadigital@gmail.com</strong>.</p>
-            <pre id="out"></pre>
-            <div class="mailrow"><button class="copy" type="button" id="copyout">Copy inquiry</button></div>
-          </div>
-        </div>
-      </form>
     </div>
   </section>
 
@@ -384,13 +464,101 @@ dialog p { color: var(--fg-2); margin-bottom: 18px; font-size: .95rem; }
 <footer>
   <div class="wrap foot">
     <span>© 2026 AKRIDHA DIGITAL. All rights reserved.</span>
-    <nav aria-label="Legal"><button type="button" data-dlg="privacy">Privacy Policy</button><button type="button" data-dlg="terms">Terms of Service</button></nav>
+    <nav aria-label="Legal"><a href="#privacy-policy">Privacy Policy</a><a href="#terms-of-service">Terms of Service</a><a href="#refund-policy">Refund Policy</a><a href="#data-deletion">Data Deletion</a><a href="#legal">All policies</a></nav>
   </div>
 </footer>
 
-<dialog id="privacy"><h3>Privacy Policy</h3><p>The full Privacy Policy document will be published here. Until then: details entered in the inquiry form are emailed to akridhadigital@gmail.com through a form-delivery service and used only to reply to your inquiry.</p><button class="ghost" type="button" data-close>Close</button></dialog>
-<dialog id="terms"><h3>Terms of Service</h3><p>The full Terms of Service document will be published here. For project scope, pricing and delivery terms, contact akridhadigital@gmail.com.</p><button class="ghost" type="button" data-close>Close</button></dialog>
 
+<div class="fab"><a class="f-call" href="tel:+917905360342" aria-label="Call AKRIDHA DIGITAL"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a><a class="f-wa" href="https://wa.me/917905360342?text=Hi%20AKRIDHA%20DIGITAL%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20l1.4-4.2A8.5 8.5 0 1 1 8 19.2L3 20z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.3-2-1-.9.7a4 4 0 0 1-1.9-1.9l.7-.9-1-2L9 9.5z"/></svg></a></div>
+<div id="legal" hidden>
+<div class="lg-bar"><div class="lg-bar-in"><a class="logo" href="#home" aria-label="AKRIDHA DIGITAL home"><i></i>AKRIDHA <b>DIGITAL</b></a>
+<div class="lg-acts"><button type="button" id="lgCopy" class="lg-ghost">Copy link</button><button type="button" id="lgPrint" class="lg-ghost">Print / Save PDF</button><a class="lg-ghost" href="#home">&larr; Back to site</a></div></div><div class="lg-prog" id="lgProg"></div></div>
+<div class="lg-wrap"><nav class="lg-switch" aria-label="Legal documents"><a href="#legal" data-doc="legal">All policies</a><a href="#privacy-policy" data-doc="privacy-policy">Privacy Policy</a><a href="#terms-of-service" data-doc="terms-of-service">Terms of Service</a><a href="#cookie-policy" data-doc="cookie-policy">Cookie Policy</a><a href="#disclaimer" data-doc="disclaimer">Disclaimer</a><a href="#refund-policy" data-doc="refund-policy">Refund &amp; Cancellation</a><a href="#data-deletion" data-doc="data-deletion">Data Deletion</a></nav>
+<div class="ldoc" id="doc-legal" data-doc="legal" data-title="Legal Centre" hidden><div class="lg-hero"><div class="lg-eyebrow">Legal Centre</div><h1>Policies &amp; legal information</h1><p class="lg-lead">Everything about how AKRIDHA DIGITAL handles your data, your use of our Apps and Website, and your rights. Each policy has its own link you can share directly.</p></div><div class="lg-grid"><a class="lg-card" href="#privacy-policy"><span class="lg-n">01</span><h3>Privacy Policy</h3><p>What we collect, why, who we share it with, and the choices you have.</p><em>Read &rarr;</em></a><a class="lg-card" href="#terms-of-service"><span class="lg-n">02</span><h3>Terms of Service</h3><p>The rules for using our Apps and Website.</p><em>Read &rarr;</em></a><a class="lg-card" href="#cookie-policy"><span class="lg-n">03</span><h3>Cookie Policy</h3><p>How cookies, device identifiers and similar technologies are used.</p><em>Read &rarr;</em></a><a class="lg-card" href="#disclaimer"><span class="lg-n">04</span><h3>Disclaimer</h3><p>Limits on what you should rely on in our Apps and Website.</p><em>Read &rarr;</em></a><a class="lg-card" href="#refund-policy"><span class="lg-n">05</span><h3>Refund &amp; Cancellation</h3><p>How payments, cancellations and refunds work.</p><em>Read &rarr;</em></a><a class="lg-card" href="#data-deletion"><span class="lg-n">06</span><h3>Data Deletion</h3><p>How to ask us to access, correct or delete your data.</p><em>Read &rarr;</em></a></div>
+<div class="lg-sum"><div class="lg-sum-t">Registered business</div><p>AKRIDHA DIGITAL is a legally registered Indian enterprise (MSME). Contact: <a href="mailto:akridhadigital@gmail.com">akridhadigital@gmail.com</a> &middot; <a href="tel:+917905360342">+91 79053 60342</a>.</p></div></div>
+<article class="ldoc" id="doc-privacy-policy" data-doc="privacy-policy" data-title="Privacy Policy" hidden>
+<div class="lg-hero"><div class="lg-eyebrow">Legal Centre</div><h1>Privacy Policy</h1><p class="lg-lead">What we collect, why, who we share it with, and the choices you have.</p>
+<div class="lg-meta"><span>Effective <b>15 October 2026</b></span><span>Last updated <b>15 October 2026</b></span><span>Version <b>1.0</b></span></div></div>
+<div class="lg-sum"><div class="lg-sum-t">Plain-English summary</div><p>Our Apps do not ask for your name, email or phone number. We may collect limited technical and usage data. Ads are served by Google AdMob and Meta, which may use your device advertising ID. We never sell your personal data. You can reset ad personalisation in your device settings and contact us any time.</p><small>This summary is a convenience and does not replace the full text below.</small></div>
+<details class="lg-toc-m"><summary>On this page</summary><nav><a href="#privacy-policy/who" data-s="who"><b>01</b>Who we are and scope</a><a href="#privacy-policy/collect" data-s="collect"><b>02</b>Information we collect</a><a href="#privacy-policy/use" data-s="use"><b>03</b>How we use information</a><a href="#privacy-policy/ads" data-s="ads"><b>04</b>Advertising and third-party services</a><a href="#privacy-policy/legal" data-s="legal"><b>05</b>Legal basis and consent</a><a href="#privacy-policy/share" data-s="share"><b>06</b>Sharing and disclosure</a><a href="#privacy-policy/retention" data-s="retention"><b>07</b>Data retention</a><a href="#privacy-policy/security" data-s="security"><b>08</b>Data security</a><a href="#privacy-policy/rights" data-s="rights"><b>09</b>Your rights and choices</a><a href="#privacy-policy/children" data-s="children"><b>10</b>Children's privacy</a><a href="#privacy-policy/transfers" data-s="transfers"><b>11</b>International transfers</a><a href="#privacy-policy/website" data-s="website"><b>12</b>Website and contact options</a><a href="#privacy-policy/links" data-s="links"><b>13</b>Third-party links</a><a href="#privacy-policy/changes" data-s="changes"><b>14</b>Changes to this Policy</a><a href="#privacy-policy/grievance" data-s="grievance"><b>15</b>Contact and grievance officer</a></nav></details>
+<div class="lg-cols"><aside class="lg-side"><div class="lg-side-in"><div class="lg-side-h">On this page</div><nav class="lg-toc"><a href="#privacy-policy/who" data-s="who"><b>01</b>Who we are and scope</a><a href="#privacy-policy/collect" data-s="collect"><b>02</b>Information we collect</a><a href="#privacy-policy/use" data-s="use"><b>03</b>How we use information</a><a href="#privacy-policy/ads" data-s="ads"><b>04</b>Advertising and third-party services</a><a href="#privacy-policy/legal" data-s="legal"><b>05</b>Legal basis and consent</a><a href="#privacy-policy/share" data-s="share"><b>06</b>Sharing and disclosure</a><a href="#privacy-policy/retention" data-s="retention"><b>07</b>Data retention</a><a href="#privacy-policy/security" data-s="security"><b>08</b>Data security</a><a href="#privacy-policy/rights" data-s="rights"><b>09</b>Your rights and choices</a><a href="#privacy-policy/children" data-s="children"><b>10</b>Children's privacy</a><a href="#privacy-policy/transfers" data-s="transfers"><b>11</b>International transfers</a><a href="#privacy-policy/website" data-s="website"><b>12</b>Website and contact options</a><a href="#privacy-policy/links" data-s="links"><b>13</b>Third-party links</a><a href="#privacy-policy/changes" data-s="changes"><b>14</b>Changes to this Policy</a><a href="#privacy-policy/grievance" data-s="grievance"><b>15</b>Contact and grievance officer</a></nav></div></aside><div class="lg-body"><section class="lg-sec" id="privacy-policy--who" data-s="who"><h2><span>01</span>Who we are and scope</h2><p>AKRIDHA DIGITAL ("<strong>AKRIDHA DIGITAL</strong>", "<strong>we</strong>", "<strong>us</strong>") is an India-based software services business. This Privacy Policy explains how we collect, use, share and protect information when you use our mobile applications and utility tools (the "<strong>Apps</strong>") or visit our website (the "<strong>Website</strong>"), together the "<strong>Services</strong>".</p><p>By using the Services you acknowledge that you have read this Policy. If you do not agree with it, please do not use the Services.</p></section><section class="lg-sec" id="privacy-policy--collect" data-s="collect"><h2><span>02</span>Information we collect</h2><p><strong>Information you provide.</strong> Our Apps are utilities and work without an account. We do not require you to provide your name, email address or phone number. If you contact us for support or through the Website, we receive the details you choose to send (for example your name, email address and message).</p>
+<p><strong>Information collected automatically.</strong> When you use an App, we and our service providers may collect limited non-personal and device-level data:</p>
+<ul>
+<li>Device model, manufacturer, operating system and version, language and screen settings.</li>
+<li>App version, feature usage, session length, crash logs and performance diagnostics.</li>
+<li>Approximate location derived from your IP address (not precise GPS location).</li>
+<li>Advertising identifiers (such as the Android Advertising ID or Apple IDFA) and ad interaction data, used by our advertising partners as described below.</li>
+</ul>
+<p>We do not knowingly collect sensitive personal data, financial information, contacts, photos or precise location unless a specific feature of an App needs it and you grant the permission first. Any such permission is explained in the App at the time of the request and can be withdrawn in your device settings.</p></section><section class="lg-sec" id="privacy-policy--use" data-s="use"><h2><span>03</span>How we use information</h2><ul>
+<li>To operate, maintain and improve the Apps and the Website.</li>
+<li>To diagnose crashes, fix bugs and measure performance.</li>
+<li>To show advertisements that keep the Apps free.</li>
+<li>To respond to your support requests and enquiries.</li>
+<li>To protect against fraud, abuse and security incidents, and to comply with law.</li>
+</ul></section><section class="lg-sec" id="privacy-policy--ads" data-s="ads"><h2><span>04</span>Advertising and third-party services</h2><p>To keep the Apps free, we display ads served by third-party networks, primarily <strong>Google AdMob</strong> and <strong>Meta Audience Network</strong>. These providers act on their own account for advertising purposes and may collect and use device identifiers, IP address and ad interaction data to serve, measure and personalise ads, and to prevent fraud. They may use cookies, SDKs and similar technologies.</p>
+<div class="tbl"><table>
+<thead><tr><th>Service</th><th>Purpose</th><th>Their privacy policy</th></tr></thead>
+<tbody>
+<tr><td>Google AdMob / Google Play services</td><td>Advertising, analytics, fraud prevention</td><td><a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a></td></tr>
+<tr><td>Meta Audience Network</td><td>Advertising and measurement</td><td><a href="https://www.facebook.com/privacy/policy/" rel="noopener">facebook.com/privacy/policy</a></td></tr>
+</tbody></table></div>
+<p><strong>Your ad choices.</strong> You can reset your advertising ID or opt out of personalised ads at any time: on Android go to <em>Settings &rarr; Privacy &rarr; Ads</em> (or Google &rarr; Ads); on iOS go to <em>Settings &rarr; Privacy &amp; Security &rarr; Tracking</em> and <em>Apple Advertising</em>. Opting out does not remove ads; it makes them less relevant. Where required by law (for example in the European Economic Area, the United Kingdom and Switzerland), we ask for your consent through a consent message before personalised ads are shown.</p>
+<p>If an App uses additional third-party services such as crash reporting or analytics, those providers process data under their own privacy policies.</p></section><section class="lg-sec" id="privacy-policy--legal" data-s="legal"><h2><span>05</span>Legal basis and consent</h2><p>We process personal data on the basis of your consent (for example, by granting a device permission or accepting an ad-consent prompt), our legitimate interests in running and securing the Services, and compliance with legal obligations. We handle personal data in accordance with the Information Technology Act, 2000, the rules made under it, and the Digital Personal Data Protection Act, 2023 of India, and, where applicable to users in those regions, the GDPR, UK GDPR and similar laws. You may withdraw consent at any time; withdrawal does not affect processing done before it.</p></section><section class="lg-sec" id="privacy-policy--share" data-s="share"><h2><span>06</span>Sharing and disclosure</h2><p>We <strong>do not sell, trade or rent</strong> your personal data. We share data only:</p>
+<ul>
+<li>with service providers that help us run the Services (advertising, crash reporting, hosting, email delivery), bound to use data only for those purposes;</li>
+<li>when required by law, court order or a lawful request from a government authority;</li>
+<li>to protect the rights, property or safety of AKRIDHA DIGITAL, our users or the public;</li>
+<li>in connection with a merger, acquisition or sale of assets, in which case we will tell you if your data becomes subject to a different policy.</li>
+</ul></section><section class="lg-sec" id="privacy-policy--retention" data-s="retention"><h2><span>07</span>Data retention</h2><p>We keep data only as long as needed for the purposes above. Support emails and Website enquiries are kept for as long as needed to resolve your request and for a reasonable period afterwards, then deleted. Anonymous diagnostics are kept in aggregated form. Data held by advertising partners is retained under their own policies.</p></section><section class="lg-sec" id="privacy-policy--security" data-s="security"><h2><span>08</span>Data security</h2><p>We use reasonable technical and organisational safeguards, including encrypted (HTTPS) connections, to protect the data we handle. No method of transmission or storage is completely secure, so we cannot guarantee absolute security. If a data breach affecting your personal data occurs, we will notify you and the relevant authority as required by law.</p></section><section class="lg-sec" id="privacy-policy--rights" data-s="rights"><h2><span>09</span>Your rights and choices</h2><p>Subject to applicable law, you may have the right to:</p>
+<ul>
+<li>access the personal data we hold about you and ask for a summary of it;</li>
+<li>correct or update inaccurate data;</li>
+<li>request erasure of your personal data;</li>
+<li>withdraw consent and object to or restrict certain processing;</li>
+<li>nominate another person to exercise your rights if you die or become incapacitated (India);</li>
+<li>lodge a complaint with a data protection authority.</li>
+</ul>
+<p>To exercise these rights, email <a href="mailto:akridhadigital@gmail.com">akridhadigital@gmail.com</a> from the address you used to contact us. We may need to verify your identity and will respond within a reasonable time and in any case within the period required by law. Because the Apps do not require an account, we usually cannot identify you from device-level data; for ad-related data, please use the device controls in Section 4.</p></section><section class="lg-sec" id="privacy-policy--children" data-s="children"><h2><span>10</span>Children's privacy</h2><p>The Services are not directed to children under 13 (or under 16 where local law sets a higher age, and under 18 where Indian law requires verifiable parental consent). We do not knowingly collect personal data from children, and we do not knowingly serve personalised ads to them. If you believe a child has given us personal data, contact us and we will delete it promptly.</p></section><section class="lg-sec" id="privacy-policy--transfers" data-s="transfers"><h2><span>11</span>International transfers</h2><p>We are based in India, and our service providers (including Google and Meta) may process data in other countries, including the United States. Where required, we rely on appropriate safeguards for such transfers.</p></section><section class="lg-sec" id="privacy-policy--website" data-s="website"><h2><span>12</span>Website and contact options</h2><p>The Website has no sign-up and no enquiry form. It offers WhatsApp, phone and email links. If you use them, your message and contact details (such as your name and phone number or email address) are handled by the service you choose (WhatsApp, your phone carrier or your email provider) under its own policy, and we receive and use them only to reply to you. We do not use them for marketing without your consent. The Website loads fonts from Google Fonts, which may receive your IP address.</p></section><section class="lg-sec" id="privacy-policy--links" data-s="links"><h2><span>13</span>Third-party links</h2><p>The Services may link to third-party websites or apps. We are not responsible for their content or privacy practices, and we encourage you to read their policies.</p></section><section class="lg-sec" id="privacy-policy--changes" data-s="changes"><h2><span>14</span>Changes to this Policy</h2><p>We may update this Policy from time to time. The updated version will be posted on this page with a new "Last updated" date. Material changes will be highlighted in the App or on the Website where appropriate. Continued use of the Services after an update means you accept the revised Policy.</p></section><section class="lg-sec" id="privacy-policy--grievance" data-s="grievance"><h2><span>15</span>Contact and grievance officer</h2><div class="contact">
+<p><strong>AKRIDHA DIGITAL</strong><br>India</p>
+<p>Grievance / Data Protection contact: <strong>Rahul Rai</strong><br>
+Email: <a href="mailto:akridhadigital@gmail.com">akridhadigital@gmail.com</a><br>
+Phone: <a href="tel:+917905360342">+91 79053 60342</a><br>
+Website: <a href="https://akridha-digital.github.io/Alridha-web/">akridha-digital.github.io/Alridha-web</a></p>
+<p style="margin:0">We aim to acknowledge complaints within 48 hours and resolve them within 30 days.</p>
+</div></section>
+<div class="lg-end">Questions? Write to <a href="mailto:akridhadigital@gmail.com">akridhadigital@gmail.com</a> or call <a href="tel:+917905360342">+91 79053 60342</a>.</div></div></div></article><article class="ldoc" id="doc-terms-of-service" data-doc="terms-of-service" data-title="Terms of Service" hidden>
+<div class="lg-hero"><div class="lg-eyebrow">Legal Centre</div><h1>Terms of Service</h1><p class="lg-lead">The rules for using our Apps and Website.</p>
+<div class="lg-meta"><span>Effective <b>15 October 2026</b></span><span>Last updated <b>15 October 2026</b></span><span>Version <b>1.0</b></span></div></div>
+<div class="lg-sum"><div class="lg-sum-t">Plain-English summary</div><p>Use the Apps lawfully and at your own discretion. We own our software and brand; you get a limited, personal licence. Apps are provided "as is", our liability is limited, and disputes are governed by Indian law. Paid project work is governed by a separate written agreement.</p><small>This summary is a convenience and does not replace the full text below.</small></div>
+<details class="lg-toc-m"><summary>On this page</summary><nav><a href="#terms-of-service/accept" data-s="accept"><b>01</b>Acceptance of terms</a><a href="#terms-of-service/eligible" data-s="eligible"><b>02</b>Eligibility</a><a href="#terms-of-service/licence" data-s="licence"><b>03</b>Licence to use the Apps</a><a href="#terms-of-service/use" data-s="use"><b>04</b>Acceptable use</a><a href="#terms-of-service/ads" data-s="ads"><b>05</b>Advertising and third parties</a><a href="#terms-of-service/ip" data-s="ip"><b>06</b>Intellectual property</a><a href="#terms-of-service/feedback" data-s="feedback"><b>07</b>Feedback and communications</a><a href="#terms-of-service/services" data-s="services"><b>08</b>Project and development services</a><a href="#terms-of-service/disclaim" data-s="disclaim"><b>09</b>Disclaimer of warranties</a><a href="#terms-of-service/liability" data-s="liability"><b>10</b>Limitation of liability</a><a href="#terms-of-service/indemnity" data-s="indemnity"><b>11</b>Indemnity</a><a href="#terms-of-service/term" data-s="term"><b>12</b>Suspension and termination</a><a href="#terms-of-service/changes" data-s="changes"><b>13</b>Changes and availability</a><a href="#terms-of-service/law" data-s="law"><b>14</b>Governing law and disputes</a><a href="#terms-of-service/general" data-s="general"><b>15</b>General</a><a href="#terms-of-service/contact" data-s="contact"><b>16</b>Contact</a></nav></details>
+<div class="lg-cols"><aside class="lg-side"><div class="lg-side-in"><div class="lg-side-h">On this page</div><nav class="lg-toc"><a href="#terms-of-service/accept" data-s="accept"><b>01</b>Acceptance of terms</a><a href="#terms-of-service/eligible" data-s="eligible"><b>02</b>Eligibility</a><a href="#terms-of-service/licence" data-s="licence"><b>03</b>Licence to use the Apps</a><a href="#terms-of-service/use" data-s="use"><b>04</b>Acceptable use</a><a href="#terms-of-service/ads" data-s="ads"><b>05</b>Advertising and third parties</a><a href="#terms-of-service/ip" data-s="ip"><b>06</b>Intellectual property</a><a href="#terms-of-service/feedback" data-s="feedback"><b>07</b>Feedback and communications</a><a href="#terms-of-service/services" data-s="services"><b>08</b>Project and development services</a><a href="#terms-of-service/disclaim" data-s="disclaim"><b>09</b>Disclaimer of warranties</a><a href="#terms-of-service/liability" data-s="liability"><b>10</b>Limitation of liability</a><a href="#terms-of-service/indemnity" data-s="indemnity"><b>11</b>Indemnity</a><a href="#terms-of-service/term" data-s="term"><b>12</b>Suspension and termination</a><a href="#terms-of-service/changes" data-s="changes"><b>13</b>Changes and availability</a><a href="#terms-of-service/law" data-s="law"><b>14</b>Governing law and disputes</a><a href="#terms-of-service/general" data-s="general"><b>15</b>General</a><a href="#terms-of-service/contact" data-s="contact"><b>16</b>Contact</a></nav></div></aside><div class="lg-body"><section class="lg-sec" id="terms-of-service--accept" data-s="accept"><h2><span>01</span>Acceptance of terms</h2><p>These Terms of Service ("<strong>Terms</strong>") form a binding agreement between you and AKRIDHA DIGITAL ("<strong>we</strong>", "<strong>us</strong>") covering your use of our mobile applications and tools (the "<strong>Apps</strong>"), our website, and related services (the "<strong>Services</strong>"). By downloading, installing, accessing or using the Services you agree to these Terms and to our <a href="#privacy-policy">Privacy Policy</a>. If you do not agree, do not use the Services.</p></section><section class="lg-sec" id="terms-of-service--eligible" data-s="eligible"><h2><span>02</span>Eligibility</h2><p>You must be at least 18 years old, or the age of majority where you live, or use the Services under the supervision of a parent or guardian who accepts these Terms. You confirm that you are legally able to enter into a binding contract.</p></section><section class="lg-sec" id="terms-of-service--licence" data-s="licence"><h2><span>03</span>Licence to use the Apps</h2><p>Subject to these Terms, we grant you a limited, personal, non-exclusive, non-transferable, revocable licence to install and use the Apps on devices you own or control, for lawful personal or internal business purposes. The Apps are licensed, not sold. App-store terms (Google Play, Apple App Store) also apply, and if they conflict with these Terms on matters they cover, the store terms prevail.</p></section><section class="lg-sec" id="terms-of-service--use" data-s="use"><h2><span>04</span>Acceptable use</h2><p>You agree not to:</p><ul><li>copy, modify, reverse engineer, decompile or attempt to extract the source code of the Apps, except where law expressly allows;</li><li>use the Services unlawfully, fraudulently, or to infringe the rights of others;</li><li>interfere with or disrupt the Services, servers or networks, or bypass security or ad-delivery features;</li><li>generate artificial ad impressions or clicks, or encourage others to do so;</li><li>use automated tools to scrape or overload the Website; or</li><li>remove or alter any proprietary notice, or resell or sublicense the Apps.</li></ul></section><section class="lg-sec" id="terms-of-service--ads" data-s="ads"><h2><span>05</span>Advertising and third parties</h2><p>The Apps are free and supported by advertising from third-party networks such as Google AdMob and Meta. Ads and linked sites are not controlled by us, and we are not responsible for their content, products or privacy practices. Your dealings with advertisers are solely between you and them.</p></section><section class="lg-sec" id="terms-of-service--ip" data-s="ip"><h2><span>06</span>Intellectual property</h2><p>The Apps, Website, source code, design, text, graphics, logos and the names AKRIDHA DIGITAL are owned by us or our licensors and protected by Indian and international intellectual-property laws. Third-party names, logos and app names shown in our portfolio belong to their respective owners and are shown only to describe work we performed. Nothing in these Terms transfers ownership to you.</p></section><section class="lg-sec" id="terms-of-service--feedback" data-s="feedback"><h2><span>07</span>Feedback and communications</h2><p>If you send us ideas or feedback, you grant us a free, perpetual right to use them without obligation to you. Emails and messages you send are handled as described in our Privacy Policy.</p></section><section class="lg-sec" id="terms-of-service--services" data-s="services"><h2><span>08</span>Project and development services</h2><p>Custom software, app or website development is governed by a separate written proposal, statement of work or agreement. If that agreement conflicts with these Terms, the agreement prevails for that engagement. Statements on the Website about our work are for information and are not an offer capable of acceptance.</p></section><section class="lg-sec" id="terms-of-service--disclaim" data-s="disclaim"><h2><span>09</span>Disclaimer of warranties</h2><p>To the fullest extent permitted by law, the Services are provided "<strong>as is</strong>" and "<strong>as available</strong>", without warranties of any kind, express or implied, including merchantability, fitness for a particular purpose, accuracy, non-infringement, or uninterrupted or error-free operation. See also our <a href="#disclaimer">Disclaimer</a>.</p></section><section class="lg-sec" id="terms-of-service--liability" data-s="liability"><h2><span>10</span>Limitation of liability</h2><p>To the fullest extent permitted by law, AKRIDHA DIGITAL, its proprietor, contractors and partners are not liable for any indirect, incidental, special, consequential or punitive damages, or for loss of data, profits, revenue or goodwill, arising from your use of or inability to use the Services. Our total aggregate liability for any claim relating to the Apps shall not exceed <strong>INR 1,000</strong> or the amount you paid us for the relevant service in the preceding 12 months, whichever is greater. Nothing in these Terms excludes liability that cannot lawfully be excluded, including for fraud or wilful misconduct.</p></section><section class="lg-sec" id="terms-of-service--indemnity" data-s="indemnity"><h2><span>11</span>Indemnity</h2><p>You agree to indemnify and hold us harmless from claims, losses and expenses (including reasonable legal fees) arising from your breach of these Terms, misuse of the Services, or violation of any law or third-party right.</p></section><section class="lg-sec" id="terms-of-service--term" data-s="term"><h2><span>12</span>Suspension and termination</h2><p>We may suspend or end your access at any time, without notice, if you breach these Terms or if needed to protect the Services or comply with law. You may stop using the Apps at any time by uninstalling them. Sections that by nature should survive (intellectual property, disclaimers, liability, indemnity, governing law) survive termination.</p></section><section class="lg-sec" id="terms-of-service--changes" data-s="changes"><h2><span>13</span>Changes and availability</h2><p>We may update the Apps, change or discontinue features, or revise these Terms. The updated Terms apply from the "Last updated" date; continued use means acceptance. We do not guarantee that any App will always be available.</p></section><section class="lg-sec" id="terms-of-service--law" data-s="law"><h2><span>14</span>Governing law and disputes</h2><p>These Terms are governed by the laws of India. Parties will first try to resolve any dispute amicably by written notice to akridhadigital@gmail.com. Failing that within 30 days, disputes shall be referred to arbitration by a sole arbitrator under the Arbitration and Conciliation Act, 1996, seated in Kanpur, Uttar Pradesh, in English. Subject to this, the courts at Kanpur, Uttar Pradesh have exclusive jurisdiction. Nothing prevents you from using consumer remedies available to you by law.</p></section><section class="lg-sec" id="terms-of-service--general" data-s="general"><h2><span>15</span>General</h2><p>If any provision is held unenforceable, the rest remain in force. Our failure to enforce a right is not a waiver. These Terms and the Privacy Policy are the entire agreement between you and us about the Services. We are not liable for delay or failure caused by events beyond our reasonable control. You may not assign these Terms without our consent; we may assign them in connection with a business transfer.</p></section><section class="lg-sec" id="terms-of-service--contact" data-s="contact"><h2><span>16</span>Contact</h2><p>Questions about these Terms: <a href="mailto:akridhadigital@gmail.com">akridhadigital@gmail.com</a> &middot; <a href="tel:+917905360342">+91 79053 60342</a>.</p></section>
+<div class="lg-end">Questions? Write to <a href="mailto:akridhadigital@gmail.com">akridhadigital@gmail.com</a> or call <a href="tel:+917905360342">+91 79053 60342</a>.</div></div></div></article><article class="ldoc" id="doc-cookie-policy" data-doc="cookie-policy" data-title="Cookie &amp; Tracking Policy" hidden>
+<div class="lg-hero"><div class="lg-eyebrow">Legal Centre</div><h1>Cookie &amp; Tracking Policy</h1><p class="lg-lead">How cookies, device identifiers and similar technologies are used.</p>
+<div class="lg-meta"><span>Effective <b>15 October 2026</b></span><span>Last updated <b>15 October 2026</b></span><span>Version <b>1.0</b></span></div></div>
+<div class="lg-sum"><div class="lg-sum-t">Plain-English summary</div><p>Our Website sets no cookies of its own and runs no analytics or advertising trackers. It loads Google Fonts. Our Apps display ads through Google AdMob and Meta, which use device advertising identifiers (not browser cookies) that you can reset or limit at any time.</p><small>This summary is a convenience and does not replace the full text below.</small></div>
+<details class="lg-toc-m"><summary>On this page</summary><nav><a href="#cookie-policy/what" data-s="what"><b>01</b>What these technologies are</a><a href="#cookie-policy/site" data-s="site"><b>02</b>On our Website</a><a href="#cookie-policy/apps" data-s="apps"><b>03</b>In our Apps</a><a href="#cookie-policy/consent" data-s="consent"><b>04</b>Consent</a><a href="#cookie-policy/control" data-s="control"><b>05</b>How to control them</a><a href="#cookie-policy/update" data-s="update"><b>06</b>Changes and contact</a></nav></details>
+<div class="lg-cols"><aside class="lg-side"><div class="lg-side-in"><div class="lg-side-h">On this page</div><nav class="lg-toc"><a href="#cookie-policy/what" data-s="what"><b>01</b>What these technologies are</a><a href="#cookie-policy/site" data-s="site"><b>02</b>On our Website</a><a href="#cookie-policy/apps" data-s="apps"><b>03</b>In our Apps</a><a href="#cookie-policy/consent" data-s="consent"><b>04</b>Consent</a><a href="#cookie-policy/control" data-s="control"><b>05</b>How to control them</a><a href="#cookie-policy/update" data-s="update"><b>06</b>Changes and contact</a></nav></div></aside><div class="lg-body"><section class="lg-sec" id="cookie-policy--what" data-s="what"><h2><span>01</span>What these technologies are</h2><p>Cookies are small text files stored by your browser. Mobile apps use comparable technologies such as software development kits (SDKs) and device advertising identifiers (for example Android Advertising ID and Apple IDFA). We call all of these "tracking technologies" in this policy.</p></section><section class="lg-sec" id="cookie-policy--site" data-s="site"><h2><span>02</span>On our Website</h2><p>The Website does not set first-party cookies and does not use analytics, advertising or social-media tracking. It does load resources from third parties, which may receive your IP address and browser details when they are fetched:</p><div class="tbl"><table><thead><tr><th>Provider</th><th>Purpose</th><th>Type</th></tr></thead><tbody><tr><td>Google Fonts</td><td>Delivering typefaces</td><td>Third-party resource request</td></tr><tr><td>WhatsApp, phone and email links</td><td>Letting you contact us</td><td>Only when you tap a link</td></tr></tbody></table></div></section><section class="lg-sec" id="cookie-policy--apps" data-s="apps"><h2><span>03</span>In our Apps</h2><p>Our Apps show ads using Google AdMob and Meta Audience Network. These SDKs may read and use device advertising identifiers, device information and ad interaction data to serve, limit the frequency of, measure and personalise ads, and to prevent fraud. We may also use crash and performance diagnostics to keep the Apps stable.</p><div class="tbl"><table><thead><tr><th>Category</th><th>Examples</th><th>Purpose</th></tr></thead><tbody><tr><td>Advertising</td><td>Google AdMob, Meta Audience Network</td><td>Ad delivery, measurement, fraud prevention</td></tr><tr><td>Diagnostics</td><td>Crash and performance data</td><td>Stability and improvement</td></tr></tbody></table></div></section><section class="lg-sec" id="cookie-policy--consent" data-s="consent"><h2><span>04</span>Consent</h2><p>Where the law requires it (for example in the European Economic Area, the United Kingdom and Switzerland) we show a consent message before personalised ads are shown. You can change your choice later where the App provides that option.</p></section><section class="lg-sec" id="cookie-policy--control" data-s="control"><h2><span>05</span>How to control them</h2><ul><li><strong>Android:</strong> Settings &rarr; Privacy &rarr; Ads, then delete your advertising ID or opt out of ads personalisation.</li><li><strong>iOS:</strong> Settings &rarr; Privacy &amp; Security &rarr; Tracking, and Apple Advertising.</li><li><strong>Browser:</strong> you can block or delete cookies in your browser settings, and block third-party requests with content blockers. The Website works without cookies.</li><li><strong>Industry tools:</strong> <a href="https://www.youronlinechoices.com" rel="noopener">youronlinechoices.com</a> and <a href="https://optout.aboutads.info" rel="noopener">optout.aboutads.info</a>.</li></ul><p>Opting out of personalisation does not remove ads; it makes them less relevant.</p></section><section class="lg-sec" id="cookie-policy--update" data-s="update"><h2><span>06</span>Changes and contact</h2><p>We will update this policy if our tracking technologies change. Questions: <a href="mailto:akridhadigital@gmail.com">akridhadigital@gmail.com</a>. See also our <a href="#privacy-policy">Privacy Policy</a>.</p></section>
+<div class="lg-end">Questions? Write to <a href="mailto:akridhadigital@gmail.com">akridhadigital@gmail.com</a> or call <a href="tel:+917905360342">+91 79053 60342</a>.</div></div></div></article><article class="ldoc" id="doc-disclaimer" data-doc="disclaimer" data-title="Disclaimer" hidden>
+<div class="lg-hero"><div class="lg-eyebrow">Legal Centre</div><h1>Disclaimer</h1><p class="lg-lead">Limits on what you should rely on in our Apps and Website.</p>
+<div class="lg-meta"><span>Effective <b>15 October 2026</b></span><span>Last updated <b>15 October 2026</b></span><span>Version <b>1.0</b></span></div></div>
+<div class="lg-sum"><div class="lg-sum-t">Plain-English summary</div><p>Our Apps and Website are provided for general information and convenience. Results from tools are not guaranteed, nothing here is professional advice, and third-party names shown in our portfolio belong to their owners.</p><small>This summary is a convenience and does not replace the full text below.</small></div>
+<details class="lg-toc-m"><summary>On this page</summary><nav><a href="#disclaimer/general" data-s="general"><b>01</b>General information</a><a href="#disclaimer/tools" data-s="tools"><b>02</b>Utility tools and results</a><a href="#disclaimer/advice" data-s="advice"><b>03</b>No professional advice</a><a href="#disclaimer/portfolio" data-s="portfolio"><b>04</b>Portfolio and third-party marks</a><a href="#disclaimer/links" data-s="links"><b>05</b>External links and ads</a><a href="#disclaimer/liability" data-s="liability"><b>06</b>Limitation</a><a href="#disclaimer/contact" data-s="contact"><b>07</b>Contact</a></nav></details>
+<div class="lg-cols"><aside class="lg-side"><div class="lg-side-in"><div class="lg-side-h">On this page</div><nav class="lg-toc"><a href="#disclaimer/general" data-s="general"><b>01</b>General information</a><a href="#disclaimer/tools" data-s="tools"><b>02</b>Utility tools and results</a><a href="#disclaimer/advice" data-s="advice"><b>03</b>No professional advice</a><a href="#disclaimer/portfolio" data-s="portfolio"><b>04</b>Portfolio and third-party marks</a><a href="#disclaimer/links" data-s="links"><b>05</b>External links and ads</a><a href="#disclaimer/liability" data-s="liability"><b>06</b>Limitation</a><a href="#disclaimer/contact" data-s="contact"><b>07</b>Contact</a></nav></div></aside><div class="lg-body"><section class="lg-sec" id="disclaimer--general" data-s="general"><h2><span>01</span>General information</h2><p>The content of this Website and the output of our Apps are provided for general purposes only. We try to keep them accurate and current but make no representation or warranty about completeness, accuracy, reliability or availability. You use them at your own risk.</p></section><section class="lg-sec" id="disclaimer--tools" data-s="tools"><h2><span>02</span>Utility tools and results</h2><p>Our utility Apps produce results from the inputs and device capabilities available. Results (such as calculations, conversions, scans or measurements) may be affected by device hardware, settings and input quality and <strong>must not be relied on</strong> for medical, legal, financial, safety-critical or regulatory decisions. Verify important results independently.</p></section><section class="lg-sec" id="disclaimer--advice" data-s="advice"><h2><span>03</span>No professional advice</h2><p>Nothing in the Services is legal, financial, medical, tax or other professional advice, and no professional relationship is created by using them. Consult a qualified professional for your situation.</p></section><section class="lg-sec" id="disclaimer--portfolio" data-s="portfolio"><h2><span>04</span>Portfolio and third-party marks</h2><p>Apps, brands, logos and product names shown in our portfolio belong to their respective owners and are used only to describe work we or our team performed. Their appearance does not imply endorsement by, or affiliation with, those owners. Descriptions reflect our contribution and may not cover the whole product. Some listed apps have since been updated, replaced or retired by their owners.</p></section><section class="lg-sec" id="disclaimer--links" data-s="links"><h2><span>05</span>External links and ads</h2><p>We are not responsible for the content, accuracy, safety or practices of third-party websites, apps or advertisements linked from or displayed in the Services, and a link is not an endorsement.</p></section><section class="lg-sec" id="disclaimer--liability" data-s="liability"><h2><span>06</span>Limitation</h2><p>To the maximum extent permitted by law, AKRIDHA DIGITAL is not liable for any loss or damage arising from reliance on the Services. This Disclaimer is read together with our <a href="#terms-of-service">Terms of Service</a>.</p></section><section class="lg-sec" id="disclaimer--contact" data-s="contact"><h2><span>07</span>Contact</h2><p>Corrections or concerns: <a href="mailto:akridhadigital@gmail.com">akridhadigital@gmail.com</a>.</p></section>
+<div class="lg-end">Questions? Write to <a href="mailto:akridhadigital@gmail.com">akridhadigital@gmail.com</a> or call <a href="tel:+917905360342">+91 79053 60342</a>.</div></div></div></article><article class="ldoc" id="doc-refund-policy" data-doc="refund-policy" data-title="Refund &amp; Cancellation Policy" hidden>
+<div class="lg-hero"><div class="lg-eyebrow">Legal Centre</div><h1>Refund &amp; Cancellation Policy</h1><p class="lg-lead">How payments, cancellations and refunds work.</p>
+<div class="lg-meta"><span>Effective <b>15 October 2026</b></span><span>Last updated <b>15 October 2026</b></span><span>Version <b>1.0</b></span></div></div>
+<div class="lg-sum"><div class="lg-sum-t">Plain-English summary</div><p>Our Apps are free. In-app purchases (if any) are billed and refunded by Google Play or the Apple App Store. For paid development work, cancellation and refund terms follow the written proposal; work already delivered is not refundable.</p><small>This summary is a convenience and does not replace the full text below.</small></div>
+<details class="lg-toc-m"><summary>On this page</summary><nav><a href="#refund-policy/scope" data-s="scope"><b>01</b>Scope</a><a href="#refund-policy/apps" data-s="apps"><b>02</b>App store purchases</a><a href="#refund-policy/services" data-s="services"><b>03</b>Project and service engagements</a><a href="#refund-policy/process" data-s="process"><b>04</b>How to request</a><a href="#refund-policy/tax" data-s="tax"><b>05</b>Taxes and fees</a><a href="#refund-policy/contact" data-s="contact"><b>06</b>Contact</a></nav></details>
+<div class="lg-cols"><aside class="lg-side"><div class="lg-side-in"><div class="lg-side-h">On this page</div><nav class="lg-toc"><a href="#refund-policy/scope" data-s="scope"><b>01</b>Scope</a><a href="#refund-policy/apps" data-s="apps"><b>02</b>App store purchases</a><a href="#refund-policy/services" data-s="services"><b>03</b>Project and service engagements</a><a href="#refund-policy/process" data-s="process"><b>04</b>How to request</a><a href="#refund-policy/tax" data-s="tax"><b>05</b>Taxes and fees</a><a href="#refund-policy/contact" data-s="contact"><b>06</b>Contact</a></nav></div></aside><div class="lg-body"><section class="lg-sec" id="refund-policy--scope" data-s="scope"><h2><span>01</span>Scope</h2><p>This policy covers (a) purchases inside our Apps, if any, and (b) paid software development, design and consulting services from AKRIDHA DIGITAL. Our Apps are free to download.</p></section><section class="lg-sec" id="refund-policy--apps" data-s="apps"><h2><span>02</span>App store purchases</h2><p>Purchases and subscriptions made in an App are processed by Google Play or the Apple App Store. Refunds, billing and cancellation are handled under their policies, and requests must be made to them. We cannot refund store payments directly, but we will help with any issue within the App.</p></section><section class="lg-sec" id="refund-policy--services" data-s="services"><h2><span>03</span>Project and service engagements</h2><p>Unless a signed proposal or agreement says otherwise:</p><ul><li><strong>Advance:</strong> work begins after the agreed advance or milestone payment is received.</li><li><strong>Before work starts:</strong> if you cancel in writing before work begins, the advance is refunded after deducting reasonable administrative and third-party costs.</li><li><strong>After work starts:</strong> you pay for work completed and approved up to the cancellation date, plus non-recoverable third-party costs. Amounts for completed milestones are non-refundable.</li><li><strong>Delivered work:</strong> once a milestone is delivered and accepted, or deemed accepted after 7 days without reported defects, it is not refundable. Defects reported within that window are corrected at no extra charge.</li><li><strong>Change requests:</strong> work outside the agreed scope is quoted and billed separately.</li></ul></section><section class="lg-sec" id="refund-policy--process" data-s="process"><h2><span>04</span>How to request</h2><p>Email <a href="mailto:akridhadigital@gmail.com">akridhadigital@gmail.com</a> with your name, the project or order reference, and the reason. We acknowledge requests within 2 business days. Approved refunds are paid to the original payment method within 7 to 10 business days, subject to bank timelines.</p></section><section class="lg-sec" id="refund-policy--tax" data-s="tax"><h2><span>05</span>Taxes and fees</h2><p>Payments are in Indian Rupees unless agreed otherwise. Applicable taxes, including GST where chargeable, are shown on invoices. Bank and gateway charges are not refundable unless the error was ours.</p></section><section class="lg-sec" id="refund-policy--contact" data-s="contact"><h2><span>06</span>Contact</h2><p><a href="mailto:akridhadigital@gmail.com">akridhadigital@gmail.com</a> &middot; <a href="tel:+917905360342">+91 79053 60342</a>.</p></section>
+<div class="lg-end">Questions? Write to <a href="mailto:akridhadigital@gmail.com">akridhadigital@gmail.com</a> or call <a href="tel:+917905360342">+91 79053 60342</a>.</div></div></div></article><article class="ldoc" id="doc-data-deletion" data-doc="data-deletion" data-title="Data Deletion &amp; Rights Request" hidden>
+<div class="lg-hero"><div class="lg-eyebrow">Legal Centre</div><h1>Data Deletion &amp; Rights Request</h1><p class="lg-lead">How to ask us to access, correct or delete your data.</p>
+<div class="lg-meta"><span>Effective <b>15 October 2026</b></span><span>Last updated <b>15 October 2026</b></span><span>Version <b>1.0</b></span></div></div>
+<div class="lg-sum"><div class="lg-sum-t">Plain-English summary</div><p>Our Apps have no accounts, so there is usually no personal profile to delete. If you have contacted us by email, WhatsApp or phone, or want us to erase anything we hold about you, send a request and we will respond within 30 days.</p><small>This summary is a convenience and does not replace the full text below.</small></div>
+<details class="lg-toc-m"><summary>On this page</summary><nav><a href="#data-deletion/what" data-s="what"><b>01</b>What data we may hold</a><a href="#data-deletion/how" data-s="how"><b>02</b>How to request deletion</a><a href="#data-deletion/time" data-s="time"><b>03</b>What happens next</a><a href="#data-deletion/adchoices" data-s="adchoices"><b>04</b>Ad-related data and your device</a><a href="#data-deletion/rights" data-s="rights"><b>05</b>Other rights requests</a><a href="#data-deletion/contact" data-s="contact"><b>06</b>Grievance contact</a></nav></details>
+<div class="lg-cols"><aside class="lg-side"><div class="lg-side-in"><div class="lg-side-h">On this page</div><nav class="lg-toc"><a href="#data-deletion/what" data-s="what"><b>01</b>What data we may hold</a><a href="#data-deletion/how" data-s="how"><b>02</b>How to request deletion</a><a href="#data-deletion/time" data-s="time"><b>03</b>What happens next</a><a href="#data-deletion/adchoices" data-s="adchoices"><b>04</b>Ad-related data and your device</a><a href="#data-deletion/rights" data-s="rights"><b>05</b>Other rights requests</a><a href="#data-deletion/contact" data-s="contact"><b>06</b>Grievance contact</a></nav></div></aside><div class="lg-body"><section class="lg-sec" id="data-deletion--what" data-s="what"><h2><span>01</span>What data we may hold</h2><p>Our Apps do not require registration. The data we may hold is limited to: (a) messages and details you sent us by email, WhatsApp or phone, and (b) anonymous technical diagnostics. Advertising identifiers and ad data are held by Google, Meta and our other ad partners under their own policies.</p></section><section class="lg-sec" id="data-deletion--how" data-s="how"><h2><span>02</span>How to request deletion</h2><ol><li>Email <a href="mailto:akridhadigital@gmail.com">akridhadigital@gmail.com</a> from the address you used to contact us, with the subject <strong>"Data Deletion Request"</strong>.</li><li>Include your name, the App or Website concerned, and what you want deleted.</li><li>We may ask you to confirm your identity before acting.</li></ol><p><a class="lg-btn" href="mailto:akridhadigital@gmail.com?subject=Data%20Deletion%20Request&amp;body=Name%3A%0AApp%20or%20Website%3A%0AWhat%20to%20delete%3A%0A">Email a deletion request</a></p></section><section class="lg-sec" id="data-deletion--time" data-s="time"><h2><span>03</span>What happens next</h2><ul><li>We acknowledge your request within 48 hours.</li><li>We delete or anonymise the data we hold about you within <strong>30 days</strong>, and confirm by email.</li><li>We may keep limited data where required by law, for tax or accounting records, or to resolve disputes, and will tell you if so.</li></ul></section><section class="lg-sec" id="data-deletion--adchoices" data-s="adchoices"><h2><span>04</span>Ad-related data and your device</h2><p>To limit or delete advertising data, reset your advertising ID (Android: Settings &rarr; Privacy &rarr; Ads; iOS: Settings &rarr; Privacy &amp; Security &rarr; Tracking). Uninstalling an App stops further collection from it. You can also manage Google ad data at <a href="https://myadcenter.google.com" rel="noopener">myadcenter.google.com</a>.</p></section><section class="lg-sec" id="data-deletion--rights" data-s="rights"><h2><span>05</span>Other rights requests</h2><p>The same address handles requests to access or correct your data, withdraw consent, or make a complaint. See Section 8 of the <a href="#privacy-policy/rights">Privacy Policy</a>. If you are unsatisfied, you may complain to the Data Protection Board of India or your local data protection authority.</p></section><section class="lg-sec" id="data-deletion--contact" data-s="contact"><h2><span>06</span>Grievance contact</h2><p>Rahul Rai, AKRIDHA DIGITAL, India &middot; <a href="mailto:akridhadigital@gmail.com">akridhadigital@gmail.com</a> &middot; <a href="tel:+917905360342">+91 79053 60342</a>.</p></section>
+<div class="lg-end">Questions? Write to <a href="mailto:akridhadigital@gmail.com">akridhadigital@gmail.com</a> or call <a href="tel:+917905360342">+91 79053 60342</a>.</div></div></div></article>
+<footer class="lg-foot"><span>&copy; 2026 AKRIDHA DIGITAL. All rights reserved.</span><span>Shareable links: <code>#privacy-policy</code> <code>#terms-of-service</code> <code>#cookie-policy</code></span></footer></div></div>
+<noscript><style>#legal[hidden],.ldoc[hidden]{display:block!important}</style></noscript>
 <script>
 (function () {
   var P = 'https://play.google.com/store/apps/details?id=';
@@ -463,42 +631,46 @@ dialog p { color: var(--fg-2); margin-bottom: 18px; font-size: .95rem; }
   }
   document.getElementById('copymail').addEventListener('click', function () { copy('akridhadigital@gmail.com', this); });
 
-  // Delivery: emails the inquiry to the business address through FormSubmit (needs a normal website host).
-  var ENDPOINT = 'https://formsubmit.co/ajax/akridhadigital@gmail.com';
-  var form = document.getElementById('form');
-  var sendBtn = document.getElementById('send');
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var v = { name: form.name.value.trim(), email: form.email.value.trim(), budget: form.budget.value, msg: form.msg.value.trim() };
-    var errs = {
-      name: v.name ? '' : 'Enter your name.',
-      email: /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.email) ? '' : 'Enter a valid email address.',
-      budget: v.budget ? '' : 'Choose a budget range.',
-      msg: v.msg.length >= 10 ? '' : 'Describe your project in a few words.'
-    };
-    var bad = false;
-    Object.keys(errs).forEach(function (k) { document.getElementById('e-' + k).textContent = errs[k]; if (errs[k]) bad = true; });
-    var res = document.getElementById('result'), ok = document.getElementById('ok'), fb = document.getElementById('fallback');
-    res.hidden = true; ok.hidden = true; fb.hidden = true;
-    if (bad) return;
-    var text = 'Subject: Project inquiry for AKRIDHA DIGITAL\n\nName: ' + v.name + '\nEmail: ' + v.email + '\nBudget: ' + v.budget + '\n\nProject:\n' + v.msg;
-    sendBtn.disabled = true; sendBtn.textContent = 'Sending...';
-    var fail = function () {
-      document.getElementById('out').textContent = text;
-      res.hidden = false; fb.hidden = false;
-      document.getElementById('copyout').onclick = function () { copy(text, this); };
-    };
-    var done = function () { sendBtn.disabled = false; sendBtn.textContent = 'Send Inquiry'; };
-    try {
-      fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ name: v.name, email: v.email, budget: v.budget, message: v.msg, _subject: 'New project inquiry: AKRIDHA DIGITAL', _replyto: v.email, _template: 'table' }) })
-        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok && String(j.success) !== 'false' }; }); })
-        .then(function (r) { done(); if (r.ok) { res.hidden = false; ok.hidden = false; form.reset(); } else { fail(); } })
-        .catch(function () { done(); fail(); });
-    } catch (x) { done(); fail(); }
-  });
-
-  document.querySelectorAll('[data-dlg]').forEach(function (b) { b.addEventListener('click', function () { var d = document.getElementById(b.dataset.dlg); if (d.showModal) d.showModal(); }); });
-  document.querySelectorAll('[data-close]').forEach(function (b) { b.addEventListener('click', function () { b.closest('dialog').close(); }); });
 })();
+</script>
+<script>
+(function () {
+  var legal = document.getElementById('legal'), docs = {}, cur = null, io = null;
+  document.querySelectorAll('.ldoc').forEach(function (d) { docs[d.dataset.doc] = d; });
+  var base = document.title;
+  function setNav(id) { document.querySelectorAll('.lg-switch a').forEach(function (a) { a.classList.toggle('on', a.dataset.doc === id); }); }
+  function spy(d) {
+    if (io) io.disconnect();
+    if (!('IntersectionObserver' in window) || !d.querySelector('.lg-sec')) return;
+    io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { d.querySelectorAll('.lg-toc a').forEach(function (a) { a.classList.toggle('on', a.dataset.s === e.target.dataset.s); }); } });
+    }, { rootMargin: '-90px 0px -65% 0px' });
+    d.querySelectorAll('.lg-sec').forEach(function (s) { io.observe(s); });
+  }
+  function route() {
+    var h = decodeURIComponent(location.hash.replace(/^#\/?/, '')), parts = h.split('/'), id = parts[0], sec = parts[1];
+    if (docs[id]) {
+      document.body.classList.add('lg-on'); legal.hidden = false;
+      if (cur !== id) {
+        Object.keys(docs).forEach(function (k) { docs[k].hidden = k !== id; });
+        cur = id; setNav(id); document.title = docs[id].dataset.title.replace(/&amp;/g, '&') + ' | AKRIDHA DIGITAL';
+        window.scrollTo({ top: 0, behavior: 'instant' }); spy(docs[id]);
+      }
+      if (sec) { var t = document.getElementById(id + '--' + sec); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    } else if (cur) {
+      cur = null; document.body.classList.remove('lg-on'); legal.hidden = true; document.title = base;
+      var el = h && document.getElementById(h); if (el) el.scrollIntoView(); else window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }
+  window.addEventListener('hashchange', route); route();
+  var bar = document.getElementById('lgProg');
+  window.addEventListener('scroll', function () { if (cur) { var m = document.documentElement.scrollHeight - innerHeight; bar.style.width = (m > 0 ? Math.min(100, scrollY / m * 100) : 0) + '%'; } }, { passive: true });
+  document.getElementById('lgPrint').addEventListener('click', function () { window.print(); });
+  document.getElementById('lgCopy').addEventListener('click', function () {
+    var b = this, u = location.href.split('#')[0] + '#' + cur;
+    function ok() { b.textContent = 'Link copied'; setTimeout(function () { b.textContent = 'Copy link'; }, 1600); }
+    try { navigator.clipboard.writeText(u).then(ok, function () { prompt('Copy this link', u); }); } catch (e) { prompt('Copy this link', u); }
+  });
+})();
+
 </script>
